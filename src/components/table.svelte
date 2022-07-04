@@ -30,15 +30,8 @@
 		</thead>
 		<tbody>
 			{#each $Contacts as contact }
-				<tr
-					class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-				>
-					<th
-						scope="row"
-						class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
-					>
-					{contact.id}
-					</th>
+				<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+					<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">{contact.id}</th>
 					<td class="px-6 py-4"> {contact.FirstName} </td>
 					<td class="px-6 py-4"> {contact.LastName} </td>
 					<td class="px-6 py-4"> {contact.Age} </td>
@@ -50,8 +43,7 @@
 							on:click={()=>EditContactBTN(contact)}
 							data-modal-toggle="defaultModal"
 							type="button"
-							class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button
-						>
+							class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
 					</td>
 				</tr>
 				{/each}

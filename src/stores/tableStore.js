@@ -2,19 +2,19 @@
 import { supabase } from "../supabase";
 import { writable } from "svelte/store";
 export const Contacts = writable([]);
-export let Contact = {
-  id: 0,
+export let Contact = writable({
+  id:0,
   FirstName: "",
   LastName: "",
   Email: "",
-  Phone: "",
-  Age:0,
-  Gender:""
-};
+  PhoneNum: "",
+  Age: "",
+  Gender:""});
 
 export const submit = async (Contact) => {
   console.log(Contact);
   if(Contact.id > 0){
+    console.log("Contact went through update");
     updateContact(Contact);
   }
   else{
@@ -53,26 +53,24 @@ const addContact = async (Contact) => {
   console.log(data);
   Contacts.update((cur) => [...cur, data[0]]);
   CloseModal();
+  getContacts();
 }
 //update record in supabase
 const updateContact = async (Contact) => {
+  console.log(Contact);
   const {data,error} = await supabase.from("Contacts").update({
     FirstName: Contact.FirstName,
     LastName: Contact.LastName,
     Email: Contact.Email,
-    PhoneNum: Contact.Phone,
+    PhoneNum: Contact.PhoneNum,
     Age: Contact.Age
-  }).where("id", Contact.id);
+  }).match({id:Contact.id});
   if (error) {
     console.log(error);
   }
-  Contacts.update((cur) => {
-    const newContacts = [...cur];
-    const index = newContacts.findIndex((c) => c.id === Contact.id);
-    newContacts[index] = data[0];
-    return newContacts;
-  }
-  );
+  console.log(data);
+  CloseModal();
+  getContacts();
 }
 export function CloseModal(){
   let menu = document.getElementById('extralarge-modal');
@@ -108,17 +106,12 @@ export async function EditContactBTN(contact){
     document.getElementById('submitBTN').textContent = "Edit Contact";
     let male = document.getElementById("default-radio-1");
     let female = document.getElementById("default-radio-2");
-    document.getElementById('idtxt').value = contact.id;
-    document.getElementById("first_nametxt").value = contact.FirstName;
-    document.getElementById("last_nametxt").value = contact.LastName;
-    document.getElementById("emailtxt").value = contact.Email;
-    document.getElementById("phonetxt").value = contact.PhoneNum;
-    document.getElementById("Agetxt").value = contact.Age;
+    Contact.set(contact);
     if(contact.Gender === "Male"){
       male.checked = true;
     }
     else{
-      female.checked = false;
+      female.checked = true;
     }
   }
   else {
