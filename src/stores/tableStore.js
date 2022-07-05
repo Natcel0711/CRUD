@@ -23,7 +23,7 @@ export const submit = async (Contact) => {
   }
 }
 export const getContacts = async () => {
-  const {data, error} = await supabase.from("Contacts").select();
+  const {data, error} = await supabase.from("Contacts").select().order('id', {ascending: true});
   if (error) {
     console.log(error);
   }
