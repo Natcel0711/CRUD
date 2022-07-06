@@ -8,7 +8,7 @@
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <!-- Modal header -->
             <div class="flex justify-between items-center p-5 rounded-t border-b dark:border-gray-600">
-                <h3 class="text-xl font-medium text-gray-900 dark:text-white">
+                <h3 id="modalTitle" class="text-xl font-medium text-gray-900 dark:text-white">
                     Extra Large modal
                 </h3>
                 <button on:click={CloseModal} type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="extralarge-modal">

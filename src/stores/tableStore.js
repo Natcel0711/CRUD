@@ -82,10 +82,12 @@ export function CloseModal(){
   }
 }
 export function addNewContactBTN(){
+  let modaltitle = document.getElementById('modalTitle');
+  modaltitle.innerHTML = "Add New Contact";
   let menu = document.getElementById('extralarge-modal');
   if (menu?.classList.contains('hidden')) {
     menu.classList.remove('hidden');
-    document.getElementById('submitBTN').textContent = "Add Contact";
+    document.getElementById('submitBTN').textContent = "Add";
     document.getElementById('idtxt').value = null;
     document.getElementById("first_nametxt").value = null;
     document.getElementById("last_nametxt").value = null;
@@ -100,10 +102,12 @@ export function addNewContactBTN(){
   }
 }
 export async function EditContactBTN(contact){
+  let modaltitle = document.getElementById('modalTitle');
+  modaltitle.innerHTML = "Update Contact";
   let menu = document.getElementById('extralarge-modal');
   if(menu?.classList.contains('hidden')) {
     menu.classList.remove('hidden');
-    document.getElementById('submitBTN').textContent = "Edit Contact";
+    document.getElementById('submitBTN').textContent = "Update";
     let male = document.getElementById("default-radio-1");
     let female = document.getElementById("default-radio-2");
     Contact.set(contact);
