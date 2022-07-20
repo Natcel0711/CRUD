@@ -1,6 +1,8 @@
 
 import { supabase } from "../supabase";
 import { writable } from "svelte/store";
+import { page } from "$app/stores";
+export const pageCount = writable([]);
 export const Contacts = writable([]);
 export let Contact = writable({
   id:0,
@@ -27,6 +29,10 @@ export const getContacts = async () => {
   if (error) {
     console.log(error);
   }
+
+  let length = data.length / 5;
+  pageCount.set(Math.ceil(length))
+
   Contacts.set(data);
 }
 
