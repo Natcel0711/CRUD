@@ -2,6 +2,7 @@
 import { supabase } from "../supabase";
 import { writable } from "svelte/store";
 import { page } from "$app/stores";
+export const currentPage = writable(0);
 export const pageCount = writable([]);
 export const Contacts = writable([]);
 export let Contact = writable({
@@ -29,11 +30,14 @@ export const getContacts = async () => {
   if (error) {
     console.log(error);
   }
-
-  let length = data.length / 5;
-  pageCount.set(Math.ceil(length))
-
   Contacts.set(data);
+}
+export const getPages = async () => {
+  const {data, error} = await supabase.from("Contacts").select().order('id', {ascending: true});
+  let length = data.length / 5;
+  let code = Array.apply(null, {length: Math.ceil(length)}).map(Number.call, Number)
+  console.log(code);
+  pageCount.set(code)
 }
 
 const addContact = async (Contact) => {
