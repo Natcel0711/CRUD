@@ -2,7 +2,6 @@
 	import { addNewContactBTN, EditContactBTN, Contacts, getContacts } from '../stores/tableStore';
 	import Modal from '../components/modal.svelte';
 	import Pagination from '../components/TablePages.svelte';
-
 	getContacts();
 </script>
 
