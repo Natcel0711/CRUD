@@ -1,4 +1,3 @@
-
 import { supabase } from "../supabase";
 import { writable } from "svelte/store";
 export const pageCount = writable([]);
