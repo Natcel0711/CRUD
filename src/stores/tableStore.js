@@ -1,8 +1,6 @@
 
 import { supabase } from "../supabase";
 import { writable } from "svelte/store";
-import { page } from "$app/stores";
-export const currentPage = writable(0);
 export const pageCount = writable([]);
 export const Contacts = writable([]);
 export let Contact = writable({
